@@ -18,11 +18,11 @@ void PrintChessBoard()
             else if(j == 0) 
                 printf("%3d",i);        //row number 
             else if(chessboard[i][j] == 1)
-                printf(" X");
+                printf("  X");
             else if(chessboard[i][j] == 2)
-                printf(" O");
+                printf("  O");
             else 
-                printf(" *");
+                printf("  *");
         }
         printf("\n");
     }
@@ -71,14 +71,24 @@ void PlayChess()
     int i,j,winner;
     if( WhoseTurn % 2)
     {
-        printf("Player 1's turn,enter the coordinate(row,column) of chess piece(exp.1 2)");
+        printf("Player 1's turn,enter the coordinate(row,column) of chess piece(ex.1 2)\n");
         scanf("%d %d",&i,&j);
+        while(chessboard[i][j] != 0 || i > N || j > N)
+        {
+            printf("occupied position!Enter another position!\n");
+            scanf("%d %d",&i,&j);
+        }
         chessboard[i][j] = 1;
     }
     else
     {
-        printf("Player 2's turn,enter the coordinate(row,column) of chess piece(exp.1 2)");
+        printf("Player 2's turn,enter the coordinate of chess piece(ex.1 2)\n");
         scanf("%d %d",&i,&j);
+        while(chessboard[i][j] != 0 || i > N || j > N)
+        {
+            printf("occupied position!Enter another position!\n");
+            scanf("%d %d",&i,&j);
+        }
         chessboard[i][j] = 2;
     }
     system("CLS");
@@ -87,12 +97,14 @@ void PlayChess()
     {
         if(WhoseTurn % 2 == 1)
         {
-            printf("Player 1 is the Winner\n");
+            printf("Player 1 is the Winner!!!!\n");
+            getch();
             exit(0);
         }
         else
         {
-            printf("Plaer2 is the winner\n");
+            printf("Plaer2 is the winner!!!\n");
+            getch();
             exit(0);
         }
     }
